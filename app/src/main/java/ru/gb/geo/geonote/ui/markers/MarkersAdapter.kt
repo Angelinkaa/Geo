@@ -1,5 +1,6 @@
 package ru.gb.geo.geonote.ui.markers
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -95,13 +96,14 @@ class MarkersAdapter(
 
         }
 
+        @SuppressLint("StringFormatMatches")
         fun bind(userMarker: UserMarker) {
             title.setText(userMarker.title)
             description.setText(userMarker.description)
-            latitude.text = itemView.context.getString(
+            itemView.context.getString(
                 R.string.marker_item_latitude,
                 userMarker.markerOptions.position.latitude
-            )
+            ).also { latitude.text = it }
             longitude.text = itemView.context.getString(
                 R.string.marker_item_longitude,
                 userMarker.markerOptions.position.longitude
